@@ -1,0 +1,74 @@
+.tab-pane {
+    		display: none;
+		}
+		button.tito{
+				background-color: transparent;
+			}
+		span.edit {
+		    background: url(http://localhost/paul/Final/img/icons/baseline-edit-24px.svg) no-repeat top left;
+		    background-size: contain;
+		    cursor: pointer;
+		    display: inline-block;
+		    height: 15px;
+		    width: 15px;
+		}
+		span.delete {
+		    background: url(http://localhost/paul/Final/img/icons/baseline-delete-24px.svg) no-repeat top left;
+		    background-size: contain;
+		    cursor: pointer;
+		    display: inline-block;
+		    height: 15px;
+		    width: 15px;
+		}
+		span.pause {
+		    background: url(http://localhost/paul/Final/img/icons/baseline-pause-24px.svg) no-repeat top left;
+		    background-size: contain;
+		    cursor: pointer;
+		    display: inline-block;
+		    height: 15px;
+		    width: 15px;
+		}
+		span.play {
+		    background: url(http://localhost/paul/Final/img/icons/baseline-play_arrow-24px.svg) no-repeat top left;
+		    background-size: contain;
+		    cursor: pointer;
+		    display: inline-block;
+		    height: 15px;
+		    width: 15px;
+		}
+		span.admin {
+		    background: url(http://localhost/paul/Final/img/icons/baseline-supervised_user_circle-24px.svg) no-repeat top left;
+		    background-size: contain;
+		    cursor: pointer;
+		    display: inline-block;
+		    height: 15px;
+		    width: 15px;
+		}
+		span.user {
+		    background: url(http://localhost/paul/Final/img/icons/baseline-account_circle-24px.svg) no-repeat top left;
+		    background-size: contain;
+		    cursor: pointer;
+		    display: inline-block;
+		    height: 15px;
+		    width: 15px;
+		}
+		span.setting {
+		    background: url(http://localhost/paul/Final/img/icons/baseline-settings-20px.svg) no-repeat top left;
+		    background-size: contain;
+		    cursor: pointer;
+		    display: inline-block;
+		    height: 25px;
+		    width: 25px;
+		}
+
+	ul
+	{
+	  display:flex;  
+	  list-style:none;
+	}
+a:link {
+    text-decoration: none;
+}
+a{
+	color: black;
+}
