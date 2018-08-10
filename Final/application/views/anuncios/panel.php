@@ -112,6 +112,13 @@
 				</ul>
 				  <div class="tab-content" id="myTabContent">
 				  <div class="tab-pane active" id="home">
+				  	<div class="col-md-12">
+				  		<p>
+				  			En esta sesion se encuentran todos tus anuncios publicados.
+				  			Tienes el control sobre ellos, puedes desactivarlos, editarlos
+				  			y si es necesario borrarlos.
+				  		</p>
+				  	</div>
 				  	<div class="table-responsive">
 						<table class="table">
 						  <thead class="thead-light">
@@ -214,7 +221,8 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-auto">
-									<img class="car-img-top" style="width: 50px; height: 50px;" src="<?php echo base_url('/img/user.jpg'); ?>" alt="Card image cap">
+									<?php $link=base_url();?>
+									<img class="car-img-top" src="<?=$link.'mthumb.php?src='.$link.'img/user.jpg'.'&w=75&h=100'?>" alt="Card image cap">
 								</div>
 								<div class="col">
 									<h5 class="card-title"><b><?php echo $usuario->username;?></b></h5>
@@ -232,7 +240,7 @@
 				</div>
 				<div class="row" style="padding: 5px;">
 					<div class="col card">
-						<img class="car-img-top" style="width: 350px; height: 200px; padding: 5px;" src="<?php echo base_url('/img/graph.png'); ?>" alt="Card image cap">
+						<img class="car-img-top" style="padding: 5px;" src="<?=$link.'mthumb.php?src='.$link.'img/graph.png'.'&w=350&h=200'?>" alt="Card image cap">
 					</div>
 				</div>
 			</div>

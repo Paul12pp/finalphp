@@ -115,7 +115,8 @@
 						</div>
 						<div class="row">
 							<div class="col-md-auto">
-								<img class="car-img-top" style="width: 200px; height: 200px;" src="<?php echo base_url();?><?=$accesorio->imagen?>" alt="Card image cap">
+								<?php $link = base_url();?>
+								<img class="car-img-top" src="<?=$link.'mthumb.php?src='.$link.$accesorio->imagen.'&w=250&h=250'?>" alt="Card image cap">
 							</div>
 							<div class="col">
 								<h5 class="card-title"><b>Provincia: </b><?=$accesorio->provincia?></h5>
@@ -145,7 +146,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-auto">
-									<img class="car-img-top" style="width: 50px; height: 50px;" src="<?php echo base_url('/img/user.jpg'); ?>" alt="Card image cap">
+									<img class="car-img-top" src="<?=$link.'mthumb.php?src='.$link.'img/user.jpg'.'&w=75&h=100'?>" alt="Card image cap">
 								</div>
 								<div class="col">
 									<h5 class="card-title"><b>Agregago por:</b><?php echo $usuario->username;?></h5>

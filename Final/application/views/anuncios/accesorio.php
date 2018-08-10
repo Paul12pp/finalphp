@@ -178,7 +178,7 @@
 							<label>Seleccione un accesorio</label>
 							<select class="form-control accesorio" name="tipo" required="">
 								<option value="">Seleccione algo</option>
-								<option value="Bombas de aire<">Bombas de aire</option>
+								<option value="Bombas de aire">Bombas de aire</option>
 								<option value="Bultos">Bultos</option>
 								<option value="Burros">Burros</option>
 								<option value="Cámaras">Cámaras</option>

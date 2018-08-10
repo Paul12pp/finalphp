@@ -107,32 +107,6 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<form method="post">
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<input class="form-control" type="search" name="popo" placeholder="Buscalo aqui!!" required>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<select class="form-control" name="categoria">
-									<option value="">- Categoria -</option>
-									<option value="1">Bicicleta</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="form-group">
-								<button class="btn">Buscar</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="row">
 			<div class="col-md-8">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 				  <li class="nav-item active">

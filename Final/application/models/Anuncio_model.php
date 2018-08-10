@@ -212,6 +212,24 @@ class Anuncio_model extends CI_Model {
 		$this->db->query("UPDATE bibicicleta set status=0 WHERE id = {$id}");
 	}			
 
+	function buscarCtg($buscar, $categoria)
+	{
+		$query = $this->db->query("SELECT *, bibicicleta.id as id, usuario.username FROM bibicicleta INNER join usuario on usuario.id=bibicicleta.idusuario  WHERE categoria = '{$categoria}' or titulo LIKE '%{$buscar}%' or descripcion like '%{$buscar}%' and status=1 and deleter=0 ORDER BY fechaini");
+		return $query->result();
+	}
+
+	function buscarWctg($buscar, $categoria)
+	{
+		$query = $this->db->query("SELECT *, bibicicleta.id as id, usuario.username FROM bibicicleta INNER join usuario on usuario.id=bibicicleta.idusuario WHERE tipo = '{$categoria}' or titulo LIKE '%{$buscar}%' or descripcion like '%{$buscar}%' and status=1 and deleter=0 ORDER BY fechaini");
+		return $query->result();	
+	}
+
+	function buscarNormal($buscar)
+	{
+		$query = $this->db->query("SELECT *, bibicicleta.id as id, usuario.username FROM bibicicleta INNER join usuario on usuario.id=bibicicleta.idusuario WHERE tipo like '%{$buscar}%' or titulo LIKE '%{$buscar}%' or descripcion like '%{$buscar}%' and status=1 and deleter=0 ORDER BY fechaini");
+		return $query->result();
+	}
+
 }
 
 /* End of file Anuncio_model.php */

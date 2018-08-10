@@ -113,12 +113,13 @@
 				  		foreach ($eventos as $event) {
 				  			$ver = base_url("/master/detallevento/?event={$event->id}");
 				  			$link = base_url();
+				  			$descr = substr($event->descripcion,0, 260);
 				  			echo "
 				  				<div class='card'>
 									<div class='card-body'>
 										<div class='row'>
 											<div class='col-md-auto'>
-												<a href='{$ver}'><img class='car-img-top' style='width: 100px; height: 100px;' src='{$link}{$event->imagen}' alt='Card image cap'></a>
+												<a href='{$ver}'><img class='car-img-top' src='{$link}mthumb.php?src={$link}{$event->imagen}&w=100&h=50' alt='Card image cap'></a>
 											</div>
 											<div class='col'>
 												<div class='row'>
@@ -137,7 +138,7 @@
 														<h4></h4>
 													</div>
 												</div>
-												<!--<p class='card-text'>{$event->descripcion}</p>-->
+												<p class='card-text'>{$descr}</p>
 												<a href='{$ver}' class='card-link'>Ver</a>
 											</div>
 										</DIV>

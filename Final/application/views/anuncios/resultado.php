@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Index</title>
+	<title>Resultado de busqueda</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/bootstrap/css/bootstrap.min.css');?>">
@@ -179,15 +179,15 @@
 			<div class="col-md-8">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 				  <li class="nav-item active">
-				    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick="openCity(event, 'home')">Lo mas nuevo</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick="openCity(event, 'profile')">Aleatorio</a>
+				    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick="openCity(event, 'home')">Resultados de busquedas (<?=$count?>)</a>
 				  </li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
 				  <div class="tab-pane active" id="home">
 				  	<?php
+				  	if(count($todos)==0){
+				  		echo "<div class='col-md-8'><h4>Sin resultados encontrados</h4></div>";
+				  	}
 				  		foreach ($todos as $bici) {
 				  			if($bici->categoria=='Bicicleta'){$ver = base_url("/anuncio/detalle/?id={$bici->id}");}
 							if($bici->categoria=='Accesorio'){$ver = base_url("/anuncio/detalleac/?id={$bici->id}");}
@@ -195,7 +195,7 @@
 							if($bici->categoria=='Componente'){$ver = base_url("/anuncio/detallecp/?id={$bici->id}");}
 							$descr = substr($bici->descripcion,0, 260);
 				  			
-				  			$link = base_url();
+				  			$link = base_url('');
 				  			$fecha = $bici->fechaini;
 							$d2 = strtotime('+0 days');
 							$d2 = date_create(date('Y-m-d',$d2));
@@ -215,7 +215,7 @@
 									<div class='card-body'>
 										<div class='row'>
 											<div class='col-md-auto'>
-												<a href='{$ver}'><img class='car-img-top' src='mthumb.php?src={$link}{$bici->imagen}&w=150&h=150' alt='Card image cap'></a>
+											<a href='{$ver}'><img class='car-img-top' src='{$link}mthumb.php?src={$link}{$bici->imagen}&w=150&h=150' alt='Card image cap'></a>
 											</div>
 											<div class='col'>
 												<div class='row'>
@@ -246,70 +246,13 @@
 				  			
 				  		}
 				  	?>
-				  	<div class="" style="text-align: right; ">	
-						<?php
-						$link = base_url('anuncio/');
-						if($totalpages>0){
-							$pp = 'Next';
-							$ppi = 'Previous';
-							echo '<nav class="pagination">';
-							echo '<ul class="pagination">';
-							echo '<li class="page-item"><a class="page-link" href="'.$link.'?page='.($page-1).'">'.$ppi.'</a></li>';
-							for($i=1;$i<=$totalpages;$i++){
-								if($i==$page){
-									echo '<li class="page-item"><a class="page-link active">'.$i.'</a></li>';
-								}
-								else{
-									echo '<li class="page-item"><a class="page-link" href="'.$link.'?page='.$i.'">'.$i.'</a></li>';
-								}
-							}
-							echo '<li class="page-item"><a class="page-link" href="'.$link.'?page='.($page+1).'">'.$pp.'</a></li>';
-							echo "</nav>";
-						}
-						?>	
-					</div> 
-				  </div>
-				  <div class="tab-pane "  id="profile">
-				  	Cosas aleatorioas
-				  	<div class="card">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-md-auto">
-									<img class="car-img-top" style="width: 100px; height: 100px;" src="mthumb.php?src=<?php echo base_url('/img/graph.png'); ?>" alt="Card image cap">
-								</div>
-								<div class="col">
-									<h5 class="card-title"><b>Card title</b></h5>
-									<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-									<a href="#" class="card-link">Card link</a>
-									<a href="#" class="card-link">Another link</a>
-								</div>
-							</DIV>
-						</div>											  						  			
-					</div>
-					<div class="card">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-md-auto">
-									<img class="car-img-top" style="width: 100px; height: 100px;" src="<?php echo base_url('/img/graph.png'); ?>" alt="Card image cap">
-								</div>
-								<div class="col">
-									<h5 class="card-title"><b>Card title</b></h5>
-									<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-									<a href="#" class="card-link">Card link</a>
-									<a href="#" class="card-link">Another link</a>
-								</div>
-							</DIV>
-						</div>											  						  			
-					</div>
 				  </div>
 				</div>
 			</div>
 			<div class="col-md-4" style="padding: 5px;">
 				<div class="row" style="padding: 5px;">
 					<div class="col card">
-						<img class="car-img-top" style="padding: 5px;" src="mthumb.php?src=<?php echo base_url('/img/graph.png'); ?>&w=350&h=200&q=100" alt="Card image cap">
+						<img class="car-img-top" style="padding: 5px;" src="<?php echo base_url();?>mthumb.php?src=<?php echo base_url('/img/graph.png'); ?>&w=350&h=200&q=100" alt="Card image cap">
 					</div>
 				</div>
 				<div class="row" style="padding: 5px;">

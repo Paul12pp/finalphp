@@ -134,7 +134,7 @@
 									<div class='card-body'>
 										<div class='row'>
 											<div class='col-md-auto'>
-												<a href='{$ver}'><img class='car-img-top' style='width: 100px; height: 100px;' src='{$link}{$servi->imagen}' alt='Card image cap'></a>
+												<a href='{$ver}'><img class='car-img-top' src='{$link}mthumb.php?src={$link}{$servi->imagen}&w=150&h=150' alt='Card image cap'></a>
 											</div>
 											<div class='col'>
 												<div class='row'>

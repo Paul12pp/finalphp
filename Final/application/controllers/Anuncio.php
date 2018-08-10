@@ -93,6 +93,28 @@ class Anuncio extends CI_Controller {
             
 	}
 
+	function buscar()
+	{
+		$data = array();
+		$data['sesion'] = $_SESSION['usuario'];
+		$data['admin'] = $_SESSION['admin'];
+		if($_POST){
+			if($_POST['categoria']){
+				if($_POST['categoria']=='Accesorio' || $_POST['categoria']=='Bicicleta'
+				|| $_POST['categoria']=='Servicio' || $_POST['categoria']=='Componente')
+				{
+					$data['todos'] = $this->anuncio_model->buscarCtg($_POST['buscar'],$_POST['categoria']);
+				}else{
+					$data['todos'] = $this->anuncio_model->buscarWctg($_POST['buscar'],$_POST['categoria']);
+				}
+			}else{
+				$data['todos'] = $this->anuncio_model->buscarNormal($_POST['buscar']);
+			}
+		}
+		$data['count']= count($data['todos']); 
+		$this->load->view('anuncios/resultado',$data);
+	}
+
 	//metodos guardar
 	function guardarBici()
 	{

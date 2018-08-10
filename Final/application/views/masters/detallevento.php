@@ -115,7 +115,7 @@
 						</div>
 						<div class="col-md-auto">
 							<?php $link = base_url(); ?>
-							<img class="car-img-top" style="width: 300px; height: 300px;" src="<?=$link.$evento->imagen?>" alt="Card image cap">
+							<img class="car-img-top"  src="<?=$link.'mthumb.php?src='.$link.$evento->imagen.'&w=300&h=300'?>" alt="Card image cap">
 							<p><?=$evento->descripcion?></p>
 						</div>
 						<div class="row">
@@ -138,7 +138,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-auto">
-									<img class="car-img-top" style="width: 50px; height: 50px;" src="<?php echo base_url('/img/user.jpg'); ?>" alt="Card image cap">
+									<img class="car-img-top"  src="<?=$link.'mthumb.php?src='.$link.'img/user.jpg'.'&w=75&h=100'?>" alt="Card image cap">
 								</div>
 								<div class="col">
 									<h5 class="card-title"><b>Agregago por:</b><?php echo $usuario->username;?></h5>
