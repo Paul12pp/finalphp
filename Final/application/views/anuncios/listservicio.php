@@ -130,6 +130,7 @@
 								$fecha = str_replace("-", "Hace ", $fecha);
 							}
 				  			echo "
+				  			<div style='padding-top: 5px;'>
 				  				<div class='card'>
 									<div class='card-body'>
 										<div class='row'>
@@ -161,7 +162,7 @@
 											</div>
 										</DIV>
 									</div>											  						  		
-								</div>";
+								</div></div>";
 				  			
 				  		}
 				  	?>

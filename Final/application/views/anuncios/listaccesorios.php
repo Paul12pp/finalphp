@@ -87,7 +87,7 @@
             <form action="<?php echo base_url('autorizacion/login'); ?>" class="navbar-form navbar-right form-inline" role="form">
               <div class="form-group">
                 <label class="sr-only" for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="username" name="username" autofocus required />
+                <input type="text" class="form-control" id="username" placeholder="Username" name="username" autofocus required />
               </div>
               <div class="form-group">
                 <label class="sr-only" for="Password">Password</label>
@@ -130,6 +130,7 @@
 								$fecha = str_replace("-", "Hace ", $fecha);
 							}
 				  			echo "
+				  			<div style='padding-top: 5px;'>
 				  				<div class='card'>
 									<div class='card-body'>
 										<div class='row'>
@@ -161,7 +162,7 @@
 											</div>
 										</DIV>
 									</div>											  						  		
-								</div>";
+								</div></div>";
 				  			
 				  		}
 				  	?>

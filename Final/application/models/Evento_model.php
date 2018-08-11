@@ -69,6 +69,11 @@ class Evento_model extends CI_Model {
 		$query = $this->db->query("SELECT *, evento.id as id, usuario.username from evento inner JOIN usuario on evento.idadmin = usuario.id order by fecha DESC LIMIT {$page} OFFSET {$offset}");
 		return $query->result();
 	}
+	function listarpopo($offset, $page)
+	{
+		$query = $this->db->query("SELECT *, evento.id as id, usuario.username from evento inner JOIN usuario on evento.idadmin = usuario.id order by fecha DESC LIMIT {$page} OFFSET {$offset}");
+		return $query->result();
+	}
 
 	function cargarEvento($id)
 	{

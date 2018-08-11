@@ -45,6 +45,12 @@ class Anuncio_model extends CI_Model {
 		return $query->result();
 	}
 
+	function listarAleatorio($offset,$page)
+	{
+		$query = $this->db->query("SELECT *, bibicicleta.id as id, usuario.username FROM `bibicicleta` INNER JOIN usuario on bibicicleta.idusuario = usuario.id WHERE bibicicleta.status = 1  and bibicicleta.deleter=0 ORDER by RAND() DESC LIMIT {$page} OFFSET {$offset}");
+		return $query->result();
+	}
+
 	function total(){
 		$todos = $this->db->query("select count(*) as nr from bibicicleta where status=1 and deleter=0");
 		$nn = $todos->result();

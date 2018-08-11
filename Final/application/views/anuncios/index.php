@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/bootstrap/css/bootstrap.min.css');?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/bootstrap/css/mystyle.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('/caleandar-master/css/demo.css');?>"/>
-    <link rel="stylesheet" href="<?php echo base_url('/caleandar-master/css/theme1.css');?>"/>
+    <link rel="stylesheet" href="<?php echo base_url('/caleandar-master/css/theme2.css');?>"/>
 </head>
 <body>
 	<a href="<?php echo base_url('anuncio/agregar'); ?>" class='btn btn-default bg-primary text-white'  id="myBtn">Publicar anuncio</a>
@@ -211,6 +211,7 @@
 								$fecha = str_replace("-", "Hace ", $fecha);
 							}
 				  			echo "
+				  			<div style='padding-top: 5px;'>
 				  				<div class='card'>
 									<div class='card-body'>
 										<div class='row'>
@@ -242,7 +243,7 @@
 											</div>
 										</DIV>
 									</div>											  						  		
-								</div>";
+								</div></div>";
 				  			
 				  		}
 				  	?>
@@ -270,39 +271,88 @@
 					</div> 
 				  </div>
 				  <div class="tab-pane "  id="profile">
-				  	Cosas aleatorioas
-				  	<div class="card">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-md-auto">
-									<img class="car-img-top" style="width: 100px; height: 100px;" src="mthumb.php?src=<?php echo base_url('/img/graph.png'); ?>" alt="Card image cap">
-								</div>
-								<div class="col">
-									<h5 class="card-title"><b>Card title</b></h5>
-									<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-									<a href="#" class="card-link">Card link</a>
-									<a href="#" class="card-link">Another link</a>
-								</div>
-							</DIV>
-						</div>											  						  			
-					</div>
-					<div class="card">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-md-auto">
-									<img class="car-img-top" style="width: 100px; height: 100px;" src="<?php echo base_url('/img/graph.png'); ?>" alt="Card image cap">
-								</div>
-								<div class="col">
-									<h5 class="card-title"><b>Card title</b></h5>
-									<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-									<a href="#" class="card-link">Card link</a>
-									<a href="#" class="card-link">Another link</a>
-								</div>
-							</DIV>
-						</div>											  						  			
-					</div>
+				  	<?php
+				  		foreach ($torios as $bici) {
+				  			if($bici->categoria=='Bicicleta'){$ver = base_url("/anuncio/detalle/?id={$bici->id}");}
+							if($bici->categoria=='Accesorio'){$ver = base_url("/anuncio/detalleac/?id={$bici->id}");}
+							if($bici->categoria=='Servicio'){$ver = base_url("/anuncio/detallecv/?id={$bici->id}");}
+							if($bici->categoria=='Componente'){$ver = base_url("/anuncio/detallecp/?id={$bici->id}");}
+							$descr = substr($bici->descripcion,0, 260);
+				  			
+				  			$link = base_url();
+				  			$fecha = $bici->fechaini;
+							$d2 = strtotime('+0 days');
+							$d2 = date_create(date('Y-m-d',$d2));
+							//$d3 = strtotime('+1 days');
+							$d3 = date_create(date('Y-m-d',$fecha));
+
+							$interval = date_diff($d2, $d3);
+							$fecha = $interval->format('%R%a días');
+							if($fecha=="+0 días")
+							{
+								$fecha = str_replace("+0 días", "Hoy mismo", $fecha);
+							}else{
+								$fecha = str_replace("-", "Hace ", $fecha);
+							}
+				  			echo "
+				  			<div style='padding-top: 5px;'>
+				  				<div class='card'>
+									<div class='card-body'>
+										<div class='row'>
+											<div class='col-md-auto'>
+												<a href='{$ver}'><img class='car-img-top' src='mthumb.php?src={$link}{$bici->imagen}&w=150&h=150' alt='Card image cap'></a>
+											</div>
+											<div class='col'>
+												<div class='row'>
+													<div class='col-8 align-self-start'>
+														<h5 class='card-title'><b>{$bici->titulo}</b></h5>
+														<div class='row'>
+															<div class='col-md-auto'>
+																<h6 class='card-subtitle mb-2 text-muted'>{$bici->tipo}</h6>
+															</div>
+															<div class='col'>
+																<h6 class='card-subtitle mb-2 text-muted'>{$bici->username}</h6>
+															</div>
+															<div class='col'>
+																<h6 class='card-subtitle mb-2 text-muted'>{$fecha}</h6>
+															</div>
+														</div>
+													</div>
+													<div class='col align-self-end'>
+														<h4>{$bici->moneda}{$bici->precio}</h4>
+													</div>
+												</div>
+												<p class='card-text'>{$descr}...</p>
+												<a href='{$ver}' class='card-link'>Ver</a>
+											</div>
+										</DIV>
+									</div>											  						  		
+								</div> </div>";
+				  			
+				  		}
+				  	?>
+				  	<div class="" style="text-align: right; ">	
+						<?php
+						$link = base_url('anuncio/');
+						if($totalpages>0){
+							$pp = 'Next';
+							$ppi = 'Previous';
+							echo '<nav class="pagination">';
+							echo '<ul class="pagination">';
+							echo '<li class="page-item"><a class="page-link" href="'.$link.'?page='.($page-1).'">'.$ppi.'</a></li>';
+							for($i=1;$i<=$totalpages;$i++){
+								if($i==$page){
+									echo '<li class="page-item"><a class="page-link active">'.$i.'</a></li>';
+								}
+								else{
+									echo '<li class="page-item"><a class="page-link" href="'.$link.'?page='.$i.'">'.$i.'</a></li>';
+								}
+							}
+							echo '<li class="page-item"><a class="page-link" href="'.$link.'?page='.($page+1).'">'.$pp.'</a></li>';
+							echo "</nav>";
+						}
+						?>	
+					</div> 
 				  </div>
 				</div>
 			</div>
@@ -317,8 +367,11 @@
 						<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBMX-1616978795236318%2F&tabs=timeline&width=350&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="350" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 					</div>
 				</div>
-				<div class="row card" id="caleandar" style="padding: 5px;">
+				<div class="row card" style="padding: 5px;">
 					<div class="text-center"><h4>Eventos proximos</h4></div>
+					<div id="caleandar">
+						
+					</div>
 				</div>
 			</div>
 		</div>

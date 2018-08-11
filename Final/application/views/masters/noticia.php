@@ -83,14 +83,14 @@
             </li>
           </ul>
           <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
-            <form class="navbar-form navbar-right form-inline" role="form">
+            <form method="post" action="<?php echo base_url('autorizacion/login'); ?>" class="navbar-form navbar-right form-inline" role="form">
               <div class="form-group">
-                <label class="sr-only" for="Email">Email</label>
-                <input type="email" class="form-control" id="Email" placeholder="Email" autofocus required />
+                <label class="sr-only" for="Usuario">Usuario</label>
+                <input type="text" class="form-control" id="Usuario" placeholder="Username" name="username" autofocus required />
               </div>
               <div class="form-group">
                 <label class="sr-only" for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" placeholder="Password" required />
+                <input type="password" class="form-control" id="Password" placeholder="Password" name="password" required />
               </div>
               <button type="submit" class="btn btn-success">Sign in</button>
             </form>
@@ -114,6 +114,7 @@
 				  			$ver = base_url("/master/detallenoticia/?info={$noti->id}");
 				  			$link = base_url();
 				  			echo "
+				  			<div style='padding-top: 5px;'>
 				  				<div class='card'>
 									<div class='card-body'>
 										<div class='row'>
@@ -142,7 +143,7 @@
 											</div>
 										</DIV>
 									</div>											  						  		
-								</div>";
+								</div></div>";
 				  		}
 				  	?>
 				  		<div class="" style="text-align: right; ">	

@@ -39,6 +39,7 @@ class Anuncio extends CI_Controller {
 		}
 		$offset = ($page-1)*$items_per_page;
 		$data['todos'] = $this->anuncio_model->listarAnuncio($offset, $items_per_page);
+		$data['torios'] = $this->anuncio_model->listarAleatorio($offset, $items_per_page);
 		$data['totalpages'] = $totalpages;
 		$data['page'] = $page;
 		$data['eventos']= $this->evento_model->allEvent();

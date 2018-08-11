@@ -92,7 +92,7 @@
             <form method="post" action="<?php echo base_url('autorizacion/login'); ?>" class="navbar-form navbar-right form-inline" role="form">
               <div class="form-group">
                 <label class="sr-only" for="Usuario">Usuario</label>
-                <input type="text" class="form-control" id="Usuario" placeholder="Usuario" name="username" autofocus required />
+                <input type="text" class="form-control" id="Usuario" placeholder="Username" name="username" autofocus required />
               </div>
               <div class="form-group">
                 <label class="sr-only" for="Password">Password</label>
@@ -470,6 +470,7 @@
 				  						$delete = base_url("master/eliminarevento/?event={$event->id}");
 				  						$ver = base_url("master/detallevento/?event={$event->id}");
 				  						echo "
+				  						
 				  								<tr>
 				  									<td>
 				  										{$event->id}
