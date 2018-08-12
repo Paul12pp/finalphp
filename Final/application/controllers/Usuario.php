@@ -7,6 +7,7 @@ class Usuario extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('usuario_model');
+		$this->load->model('banner_model');
 	}
 
 	public function index()
@@ -20,6 +21,8 @@ class Usuario extends CI_Controller {
 			$data['admin'] = 'hidden';
 		}
 		$data['usuario'] = $this->usuario_model->owneruser($_SESSION['usuario']);
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		$this->load->view('usuarios/index',$data);	
 	}
 

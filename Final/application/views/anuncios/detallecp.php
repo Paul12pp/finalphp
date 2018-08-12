@@ -134,35 +134,49 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-				  <li class="nav-item active">
-				    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick="openCity(event, 'home')">Lo mas nuevo</a>
-				  </li>
-				</ul>
-				<div class="tab-content" id="myTabContent">
-				  <div class="tab-pane active" id="home">
-				  	<div class="card">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-md-auto">
-									<img class="car-img-top" src="<?=$link.'mthumb.php?src='.$link.'img/user.jpg'.'&w=75&h=100'?>" alt="Card image cap">
+				<div class="row">
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+					  <li class="nav-item active">
+					    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick="openCity(event, 'home')">Lo mas nuevo</a>
+					  </li>
+					</ul>
+					<div class="tab-content" id="myTabContent">
+					  <div class="tab-pane active" id="home">
+					  	<div class="card">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-auto">
+										<img class="car-img-top" src="<?=$link.'mthumb.php?src='.$link.'img/user.jpg'.'&w=75&h=100'?>" alt="Card image cap">
+									</div>
+									<div class="col">
+										<h5 class="card-title"><b>Agregago por:</b><?php echo $usuario->username;?></h5>
+										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									</div>
+								</DIV>
+								<div class="row">
+									<div class="col">
+										<h5 class="card-title"><b>Otros articulos de:</b></h5>
+										<p>popo</p>
+										<p>lkdld</p>
+									</div>
 								</div>
-								<div class="col">
-									<h5 class="card-title"><b>Agregago por:</b><?php echo $usuario->username;?></h5>
-									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-								</div>
-							</DIV>
-							<div class="row">
-								<div class="col">
-									<h5 class="card-title"><b>Otros articulos de:</b></h5>
-									<p>popo</p>
-									<p>lkdld</p>
-								</div>
-							</div>
-						</div>											  						  			
+							</div>											  						  			
+						</div>
+							
+					  </div>
 					</div>
-						
-				  </div>
+				</div>
+				<div class="row" style="padding: 5px;">
+					<?php $link=base_url();
+
+						if($segundoban[0]->imagen=='')
+						{
+							echo "{$segundoban[0]->codigo}";
+						}else{
+							echo "<img class='car-img-top' style='padding: 5px;'' src='{$link}mthumb.php?src={$link}{$segundoban[0]->imagen}&w=350&h=400&q=100' alt='Card image cap'>";
+						}
+
+						?>	
 				</div>
 			</div>
 		</div>

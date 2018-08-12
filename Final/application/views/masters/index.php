@@ -526,19 +526,162 @@
 				  	</div>
 				  </div>
 				   <div class="tab-pane "  id="banner">
+				   	<div class="card">
+				   		<div class="col-md-6">
+				   			<form method="post" action="<?php echo base_url('master/guardarBanner'); ?>" enctype="multipart/form-data">
+				   				<div class="form-group">
+				   					<label>Id</label>
+				   					<input class="form-control" type="text" name="id" readonly>
+				   				</div>
+				   				<div class="form-group">
+				   					<label>Tipo</label>
+				   					<select class="form-control tipito" name="tipo">
+				   						<option value="imagen">Imagen</option>
+				   						<option value="script">Script</option>
+				   					</select>
+				   				</div>
+				   				<div class="custom-file imagen">
+									<input class="custom-file-input" type="file" name="imagen">
+									<label class="custom-file-label">Imagen</label>
+								</div>
+								<div class="form-group codigo" style="display: none;">
+									<label>Codigo</label>
+									<textarea class="form-control" name="codigo"></textarea>
+								</div>
+								<div class="form-group">
+									<input hidden class="form-control" type="text" name="idadmin">
+								</div>
+								<div class="form-group">
+									<button class="btn btn-success">Guardar</button>
+								</div>
+				   			</form>
+				   		</div>
+				   		<div class="col-md-4">
+				   			<form method="post" action="<?php echo base_url('master/guardarDisplay');?>">
+				   				<div class="row">
+				   					<div class="form-group">
 
+				   						<input hidden class="form-control" type="text" value="1" name="id" readonly>
+					   				</div>
+					   				<div class="col-md-auto">
+					   					<label>Primer banner</label>
+					   				</div>
+					   				<div class="col-md-auto">
+						   				<div class="col-md-6">
+						   					<div class="form-group">
+							   					<input class="form-control" type="text" name="idbanner" placeholder="Id del banner" required>
+							   				</div>
+						   				</div>
+						   				<div class="col-md-6">
+						   					<div class="form-group">
+							   					<button class="btn btn-success">Actualizar</button>
+							   				</div>
+						   				</div>
+					   				</div>
+				   				</div>
+				   			</form>
+				   		</div>
+				   		<div class="col-md-4">
+				   			<form method="post" action="<?php echo base_url('master/guardarDisplay');?>">
+				   				<div class="row">
+				   					<div class="form-group">
+				   						<input hidden class="form-control" type="text" value="2" name="id" readonly>
+					   				</div>
+					   				<div class="col-md-auto">
+					   					<label>Segundo banner</label>
+					   				</div>
+					   				<div class="col-md-auto">
+						   				<div class="col-md-6">
+						   					<div class="form-group">
+							   					<input class="form-control" type="text" name="idbanner" placeholder="Id del banner" required>
+							   				</div>
+						   				</div>
+						   				<div class="col-md-6">
+						   					<div class="form-group">
+							   					<button class="btn btn-success">Actualizar</button>
+							   				</div>
+						   				</div>
+					   				</div>
+				   				</div>
+				   			</form>
+				   		</div>
+				   		<div class="table-responsive">
+				   			<table class="table">
+				   				<thead>
+				   					<tr>
+				   						<th>
+				   							Id
+				   						</th>
+				   						<th>
+				   							Tipo
+				   						</th>
+				   						<th>
+				   							Accion
+				   						</th>
+				   					</tr>
+				   				</thead>
+				   				<tbody>
+				   					<?php
+				   					foreach ($banners as $ban) {
+				   						$delete = base_url("master/eliminarbanner/?bandel={$ban->id}");
+				   						echo "
+				   								<tr>
+				   								<th>
+				   								{$ban->id}
+				   								</th>
+				   								<th>
+				   								{$ban->tipo}
+				   								</th>
+				   								<th>
+				   								<ul>
+									  				<li>
+								  						<a href='{$delete}' class='btn tito' onclick='return validar();'data-toggle='tooltip' data-placement='top' title='Borrar usuario' ><span class='delete'></span></a>
+									  				</li>
+									  			</ul>
+				   								</th>
+				   								</tr>
+				   								";
+				   					}
+				   					?>
+				   				</tbody>
+				   			</table>
+				   		</div>
+				   	</div>
 				  </div>
 				</div>
 			</div>
 			<div class="col-md-4" style="padding: 5px;">
 				<div class="row" style="padding: 5px;">
 					<div class="col card">
-						<img class="car-img-top" style="padding: 5px;" src="mthumb.php?src=<?php echo base_url('/img/graph.png'); ?>&w=350&h=200&q=100" alt="Card image cap">
+						<?php $link=base_url();
+
+						if($primerban[0]->imagen=='')
+						{
+							echo "{$primerban[0]->codigo}";
+						}else{
+							echo "<img class='car-img-top' style='padding: 5px;'' src='mthumb.php?src={$link}{$primerban[0]->imagen}&w=350&h=300&q=100' alt='Card image cap'>";
+						}
+
+						?>
 					</div>
 				</div>
 				<div class="row" style="padding: 5px;">
 					<div class="col card">
 						<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBMX-1616978795236318%2F&tabs=timeline&width=350&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="350" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+					</div>
+				</div>
+				<div class="row" style="padding: 5px;">
+					<div class="col card">
+						<?php $link=base_url();
+
+						if($segundoban[0]->imagen=='')
+						{
+							echo "{$segundoban[0]->codigo}";
+						}else{
+							echo "<img class='car-img-top' style='padding: 5px;'' src='mthumb.php?src={$link}{$segundoban[0]->imagen}&w=350&h=400&q=100' alt='Card image cap'>";
+						}
+
+						?>
 					</div>
 				</div>
 			</div>
@@ -551,6 +694,7 @@
 	<script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
     <script src="<?php echo base_url('/bootstrap/js/bootstrap.min.js');?>"></script>
+    <script src="<?php echo base_url();?>scritp/myscritp2.js"></script>
     
     <script type="text/javascript">
     	function openCity(evt, cityName) {

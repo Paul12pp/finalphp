@@ -9,6 +9,7 @@ class Anuncio extends CI_Controller {
 	    $this->load->model('anuncio_model');
 	    $this->load->model('usuario_model');
 	    $this->load->model('evento_model');
+	    $this->load->model('banner_model');
 	}
 
 	public function index()
@@ -43,6 +44,8 @@ class Anuncio extends CI_Controller {
 		$data['totalpages'] = $totalpages;
 		$data['page'] = $page;
 		$data['eventos']= $this->evento_model->allEvent();
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		$this->load->view('anuncios/index',$data);
 	}
 
@@ -112,7 +115,9 @@ class Anuncio extends CI_Controller {
 				$data['todos'] = $this->anuncio_model->buscarNormal($_POST['buscar']);
 			}
 		}
-		$data['count']= count($data['todos']); 
+		$data['count']= count($data['todos']);
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		$this->load->view('anuncios/resultado',$data);
 	}
 
@@ -184,6 +189,8 @@ class Anuncio extends CI_Controller {
 		$data['bicicletas'] = $this->anuncio_model->listarBicicleta($offset, $items_per_page);
 		$data['totalpages'] = $totalpages;
 		$data['page'] = $page;
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		$this->load->view('anuncios/listbicicletas', $data);
 	}
 
@@ -215,6 +222,8 @@ class Anuncio extends CI_Controller {
 		$data['accesorios'] = $this->anuncio_model->listarAccesorio($offset, $items_per_page);
 		$data['totalpages'] = $totalpages;
 		$data['page'] = $page;
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		$this->load->view('anuncios/listaccesorios', $data);
 	}
 
@@ -246,6 +255,8 @@ class Anuncio extends CI_Controller {
 		$data['servicios'] = $this->anuncio_model->listarServicio($offset, $items_per_page);
 		$data['totalpages'] = $totalpages;
 		$data['page'] = $page;
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		$this->load->view('anuncios/listservicio', $data);
 	}
 
@@ -277,6 +288,8 @@ class Anuncio extends CI_Controller {
 		$data['componentes'] = $this->anuncio_model->listarComponente($offset, $items_per_page);
 		$data['totalpages'] = $totalpages;
 		$data['page'] = $page;
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		$this->load->view('anuncios/listcomponente', $data);
 	}
 
@@ -297,6 +310,8 @@ class Anuncio extends CI_Controller {
 		$data['bicicleta'] = $this->anuncio_model->cargarBicicleta($id);
 		$ide = $data['bicicleta']->idusuario;
 		$data['usuario'] = $this->usuario_model->owneruser($ide);
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		if(isset($data['bicicleta']->id)){
 			$this->load->view('anuncios/detalle', $data);
 		}else{
@@ -320,6 +335,8 @@ class Anuncio extends CI_Controller {
 		$data['accesorio'] = $this->anuncio_model->cargarAccesorio($id);
 		$ide = $data['accesorio']->idusuario;
 		$data['usuario'] = $this->usuario_model->owneruser($ide);
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		if(isset($data['accesorio']->id)){
 			$this->load->view('anuncios/detalleac', $data);
 		}else{
@@ -343,6 +360,8 @@ class Anuncio extends CI_Controller {
 		$data['servicio'] = $this->anuncio_model->cargarServicio($id);
 		$ide = $data['servicio']->idusuario;
 		$data['usuario'] = $this->usuario_model->owneruser($ide);
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		if(isset($data['servicio']->id)){
 			$this->load->view('anuncios/detallecv', $data);
 		}else{
@@ -366,6 +385,8 @@ class Anuncio extends CI_Controller {
 		$data['componente'] = $this->anuncio_model->cargarComponente($id);
 		$ide = $data['componente']->idusuario;
 		$data['usuario'] = $this->usuario_model->owneruser($ide);
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		if(isset($data['componente']->id)){
 			$this->load->view('anuncios/detallecp', $data);
 		}else{
@@ -400,6 +421,8 @@ class Anuncio extends CI_Controller {
 		$data['todos'] = $this->anuncio_model->Bicisesion($id,$offset, $items_per_page);
 		$data['totalpages'] = $totalpages;
 		$data['page'] = $page;
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		$this->load->view('anuncios/panel', $data);
 	}
 
@@ -505,7 +528,6 @@ class Anuncio extends CI_Controller {
 			$this->load->view('errors/errorproperty');
 		}else{
 			$data['usuario'] = $this->usuario_model->owneruser($ide);
-			exit();
 			if(isset($data['componente']->id)){
 				$this->load->view('anuncios/editcp', $data);
 			}else{
@@ -539,7 +561,8 @@ class Anuncio extends CI_Controller {
 	}
 
 	//error de pagina no encontrada
-	function error(){
+	function error()
+	{
 		$this->load->view('errors/found');
 	}
 }

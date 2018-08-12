@@ -150,6 +150,20 @@
 						
 				  </div>
 				</div>
+				<div class="row" style="padding: 5px;">
+					<div class="col card">
+						<?php $link=base_url();
+
+						if($segundoban[0]->imagen=='')
+						{
+							echo "{$segundoban[0]->codigo}";
+						}else{
+							echo "<img class='car-img-top' style='padding: 5px;'' src='{$link}mthumb.php?src={$link}{$segundoban[0]->imagen}&w=350&h=300&q=100' alt='Card image cap'>";
+						}
+
+						?>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">

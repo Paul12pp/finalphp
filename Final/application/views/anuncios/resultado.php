@@ -10,8 +10,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/bootstrap/css/bootstrap.min.css');?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/bootstrap/css/mystyle.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('/caleandar-master/css/demo.css');?>"/>
-    <link rel="stylesheet" href="<?php echo base_url('/caleandar-master/css/theme1.css');?>"/>
 </head>
 <body>
 	<a href="<?php echo base_url('anuncio/agregar'); ?>" class='btn btn-default bg-primary text-white'  id="myBtn">Publicar anuncio</a>
@@ -252,7 +250,16 @@
 			<div class="col-md-4" style="padding: 5px;">
 				<div class="row" style="padding: 5px;">
 					<div class="col card">
-						<img class="car-img-top" style="padding: 5px;" src="<?php echo base_url();?>mthumb.php?src=<?php echo base_url('/img/graph.png'); ?>&w=350&h=200&q=100" alt="Card image cap">
+						<?php $link=base_url();
+
+						if($primerban[0]->imagen=='')
+						{
+							echo "{$primerban[0]->codigo}";
+						}else{
+							echo "<img class='car-img-top' style='padding: 5px;'' src='{$link}mthumb.php?src={$link}{$primerban[0]->imagen}&w=350&h=400&q=100' alt='Card image cap'>";
+						}
+
+						?>	
 					</div>
 				</div>
 				<div class="row" style="padding: 5px;">
@@ -260,8 +267,19 @@
 						<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBMX-1616978795236318%2F&tabs=timeline&width=350&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="350" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 					</div>
 				</div>
-				<div class="row card" id="caleandar" style="padding: 5px;">
-					<div class="text-center"><h4>Eventos proximos</h4></div>
+				<div class="row"  style="padding: 5px;">
+					<div class="col card">
+						<?php $link=base_url();
+
+						if($segundoban[0]->imagen=='')
+						{
+							echo "{$segundoban[0]->codigo}";
+						}else{
+							echo "<img class='car-img-top' style='padding: 5px;'' src='{$link}mthumb.php?src={$link}{$segundoban[0]->imagen}&w=350&h=400&q=100' alt='Card image cap'>";
+						}
+
+						?>	
+					</div>
 				</div>
 			</div>
 		</div>
@@ -271,7 +289,6 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="<?php echo base_url('/bootstrap/js/bootstrap.min.js');?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('/caleandar-master/js/caleandar.js');?>"></script>
     <script type="text/javascript">
     	function openCity(evt, cityName) {
 	        var i, tabcontent, tablinks;
@@ -290,25 +307,6 @@
 	    $(function () {
 	      $('[data-toggle="tooltip"]').tooltip()
 	    })
-
-		var events = [
-		  {'Date': new Date(2016, 6, 7), 'Title': 'Doctor appointment at 3:25pm.'},
-		  {'Date': new Date(2016, 6, 18), 'Title': 'New Garfield movie comes out!', 'Link': 'https://garfield.com'},
-		  {'Date': new Date(2016, 6, 27), 'Title': '25 year anniversary', 'Link': 'master'},
-		];
-		<?php
-		foreach ($eventos as $ke) {
-			$ke->fecha = str_replace("-", ",", $ke->fecha);
-		}
-		$js_array = json_encode($eventos);
-		echo "var javascript_array = ". $js_array . ";\n";
-		?>
-		for(var i=0;i<javascript_array.length;i++){
-			events.push({'Date': new Date(javascript_array[i].fecha), 'Title': javascript_array[i].nombre, 'Link': 'master/detallevento/?event='+javascript_array[i].id});
-		}
-		var settings = {};
-		var element = document.getElementById('caleandar');
-		caleandar(element, events, settings);
 	</script>
 
 

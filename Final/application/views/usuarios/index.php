@@ -186,7 +186,16 @@
 				</div>
 				<div class="row" style="padding: 5px;">
 					<div class="col card">
-						<img class="car-img-top" style="padding: 5px;" src="<?=$link.'mthumb.php?src='.$link.'img/graph.png'.'&w=350&h=200'?>" alt="Card image cap">
+						<?php $link=base_url();
+
+						if($primerban[0]->imagen=='')
+						{
+							echo "{$primerban[0]->codigo}";
+						}else{
+							echo "<img class='car-img-top' style='padding: 5px;'' src='mthumb.php?src={$link}{$primerban[0]->imagen}&w=350&h=300&q=100' alt='Card image cap'>";
+						}
+
+						?>
 					</div>
 				</div>
 			</div>

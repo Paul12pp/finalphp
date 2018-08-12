@@ -9,6 +9,7 @@ class Master extends CI_Controller {
 		$this->load->model('usuario_model');
 		$this->load->model('noticia_model');
 		$this->load->model('evento_model');
+		$this->load->model('banner_model');
 	}
 
 	public function index()
@@ -29,15 +30,25 @@ class Master extends CI_Controller {
 		['noti']+0:0;
 		$ido =(isset($_GET['eve'])) ? $_GET
 		['eve']+0:0;
+		$idi =(isset($_GET['ban'])) ? $_GET
+		['ban']+0:0;
+
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 
 		$data['todoN']= $this->listaN();
 		$data['todoT'] =$this->listaT();
 		$data['todoU'] = $this->listU();
+		$data['todoB'] = $this->listaB();
+
 		$data['noticia'] = $this->noticia_model->currentNoticia($ide);
 		$data['evento'] = $this->evento_model->currentEvento($ido);
+		$data['banner'] = $this->banner_model->currentBanner($idi);
+		$data['usuario'] = $this->usuario_model->owneruser($id);
+
+		$data['banners'] = $this->banner_model->listarBanner($data['todoB']['offsetB'], $data['todoB']['items_per_pageB']);
 		$data['noticias'] = $this->noticia_model->listarAnuncio($data['todoT']['offsetT'], $data['todoT']['items_per_pageT']);
 		$data['eventos'] = $this->evento_model->listarEvento($data['todoN']['offsetn'], $data['todoN']['items_per_pagen']);
-		$data['usuario'] = $this->usuario_model->owneruser($id);
 		$data['usuarios'] = $this->usuario_model->listarUsuarios($data['todoU']['offsetU'], $data['todoU']['items_per_pageU']);
 		$this->load->view('masters/index',$data);
 	}
@@ -69,7 +80,9 @@ class Master extends CI_Controller {
 		$offset = ($page-1)*$items_per_page;
 		$data['noticias'] = $this->noticia_model->listarAnuncio($offset, $items_per_page);
 		$data['totalpages'] = $totalpages;
-		$data['page'] = $page;
+		$data['page'] = $page;		
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		$this->load->view('masters/noticia', $data);
 	}
 
@@ -151,6 +164,32 @@ class Master extends CI_Controller {
 		return $data;
 	}
 
+	function listaB()
+	{
+		$data = array();
+		
+		$data['totalb'] = $this->banner_model->totalBan();
+		$total = $this->banner_model->totalBan();
+		$nr = $total;
+		$items_per_page = 3;
+		$totalpages = ceil($nr/$items_per_page);
+		if(isset($_GET['pageb'])  && !empty($_GET['pageb']))
+		{
+			$page = $_GET['pageb'];
+			if($page>$totalpages){
+				$page=1;
+			}
+		}else{
+			$page = 1;
+		}
+		$offset = ($page-1)*$items_per_page;
+		$data['offsetB']=$offset;
+		$data['items_per_pageB'] = $items_per_page;
+		$data['totalpagesb'] = $totalpages;
+		$data['pageb'] = $page;
+		return $data;
+	}
+
 	function eventos()
 	{
 		$data = array();
@@ -179,6 +218,8 @@ class Master extends CI_Controller {
 		$data['eventos'] = $this->evento_model->listarEvento($offset, $items_per_page);
 		$data['totalpages'] = $totalpages;
 		$data['page'] = $page;
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		$this->load->view('masters/evento', $data);
 	}
 
@@ -202,6 +243,8 @@ class Master extends CI_Controller {
 				redirect('master');	
 			}
 			
+		}else{
+			redirect('master');
 		}
 	}
 
@@ -222,7 +265,42 @@ class Master extends CI_Controller {
 				$this->noticia_model->guardarNoticia($_POST);
 				redirect('master');
 			}
+		}else{
+			redirect('master');
 		}
+	}
+
+	function guardarBanner()
+	{
+		if($_POST)
+		{
+			$_POST['imagen']='';
+			if(count($_FILES)>0 && $_FILES['imagen']['error']!=4){
+				$nombre = $_FILES['imagen']['name'];
+				$nombrer = strtolower($nombre);
+				$cd=$_FILES['imagen']['tmp_name'];
+				$ruta = "img/" . $_FILES['imagen']['name'];
+				$destino = "img/".$nombrer;
+				$resultado = @move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
+				$_POST['imagen'] = $destino;
+			}
+			$_POST['idadmin']= $_SESSION['usuario'];
+			$this->banner_model->agregarBanner($_POST);
+			redirect('master');
+		}else{
+			redirect('master');
+		}
+	}
+
+	function guardarDisplay()
+	{
+		if($_POST)
+		{
+			$this->banner_model->agregarDisplay($_POST);
+			redirect('master');
+		}else{
+			redirect('master');
+		}	
 	}
 
 	function guardarEvento()
@@ -257,6 +335,8 @@ class Master extends CI_Controller {
 				$this->evento_model->guardarEvento($_POST);
 				redirect('master');
 			}
+		}else{
+			redirect('master');
 		}
 	}
 
@@ -295,6 +375,13 @@ class Master extends CI_Controller {
 		redirect('master');	
 	}
 
+	function eliminarbanner()
+	{
+		$id =(isset($_GET['bandel'])) ? $_GET['bandel']+0:0;
+		$this->banner_model->eliminarBan($id);
+		redirect('master');	
+	}
+
 	function detallenoticia()
 	{
 		$id = $id =(isset($_GET['info'])) ? $_GET
@@ -311,6 +398,8 @@ class Master extends CI_Controller {
 		$data['noticia'] = $this->noticia_model->cargarNoticia($id);
 		$ide = $data['noticia']->idadmin;
 		$data['usuario'] = $this->usuario_model->owneruser($ide);
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		if(isset($data['noticia']->id)){
 			$this->load->view('masters/detalle', $data);
 		}else{
@@ -334,6 +423,8 @@ class Master extends CI_Controller {
 		$data['evento'] = $this->evento_model->cargarEvento($id);
 		$ide = $data['evento']->idadmin;
 		$data['usuario'] = $this->usuario_model->owneruser($ide);
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
 		if(isset($data['evento']->id)){
 			$this->load->view('masters/detallevento', $data);
 		}else{
