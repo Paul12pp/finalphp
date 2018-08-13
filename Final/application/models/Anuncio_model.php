@@ -39,6 +39,11 @@ class Anuncio_model extends CI_Model {
 		$this->db->insert('servicio',$servicio);
 	}
 
+	function damelo(){
+		$query = $this->db->get('bibicicleta');
+		return $query->result();
+	}
+
 	function listarAnuncio($offset,$page)
 	{
 		$query = $this->db->query("SELECT *, bibicicleta.id as id, usuario.username FROM `bibicicleta` INNER JOIN usuario on bibicicleta.idusuario = usuario.id WHERE bibicicleta.status = 1  and bibicicleta.deleter=0 ORDER by bibicicleta.fechaini DESC LIMIT {$page} OFFSET {$offset}");

@@ -13,7 +13,10 @@ class Autorizacion extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('autorizaciones/login');
+		$data = array();
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
+		$this->load->view('autorizaciones/login',$data);
 	}
 
 	function guardar()

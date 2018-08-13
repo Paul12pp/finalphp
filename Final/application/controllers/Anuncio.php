@@ -58,6 +58,22 @@ class Anuncio extends CI_Controller {
 		$this->load->view('anuncios/agregar',$data);
 	}
 
+	function limpieza()
+	{
+		$data['todos'] = $this->anuncio_model->damelo();
+		$d2 = strtotime('+0 days');
+	 	$d2 = (date('Y-m-d',$d2));
+		foreach ($data['todos'] as $key) {
+			$anuncio = (date('Y-m-d',$key->fechaini));
+			$id = $key->id;
+			if($anuncio == $d2){
+				$this->anuncio_model->eliminarAnuncio($id);
+			}
+			else{
+			}
+		}
+	}
+
 	//metodo de los formularios
 	function cargar()
 	{	
