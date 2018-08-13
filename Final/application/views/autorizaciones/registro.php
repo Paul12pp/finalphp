@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/bootstrap/css/bootstrap.min.css');?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/bootstrap/css/mystyle.css'); ?>">
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 <body>
@@ -69,34 +70,53 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="card col-md-12">
-				<h4>Registro</h4>
-				<div class="col-md-4">
-					<form method="post" action="<?php echo base_url('autorizacion/guardar'); ?>">
-						<div class="form-group">
-							<label>Nombre de usuario</label>
-							<input type="text" class="form-control" name="username" required>
-						</div>
-						<div class="form-group">
-							<label>Correo electronico</label>
-							<input type="email" class="form-control" name="correo" required>
-						</div>
-						<div class="form-group">
-							<label>Contrasena</label>
-							<input type="password" class="form-control" name="password" required>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-success">Crear cuenta</button>
-						</div>
-					</form>
+			<div class="col-md-8">
+				<div class="col card">
+					<h4>Registro</h4>
+					<p>Rellene los campos de abajo para crear su cuenta gratuita.</p>
+					<div class="col-md-4">
+						<form method="post" action="<?php echo base_url('autorizacion/guardar'); ?>">
+							<div class="form-group">
+								<label>Nombre de usuario</label>
+								<input type="text" class="form-control" name="username" required>
+							</div>
+							<div class="form-group">
+								<label>Correo electronico</label>
+								<input type="email" class="form-control" name="correo" required>
+							</div>
+							<div class="form-group">
+								<label>Contrasena</label>
+								<input type="password" class="form-control" name="password" required>
+							</div>
+							<div class="g-recaptcha" data-sitekey="6Lfu1GkUAAAAAA6nh-WAODW6rxSRuZslNlSNLfo2"></div>
+							<div class="form-group">
+								<p style="color: red;"><?=$error?></p>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-success">Crear cuenta</button>
+							</div>
+						</form>
+					</div>					
 				</div>
-			</div><!--
-			<div class="col-md-4" style="background-color: red; width: 200px; height: 200px;">
-				<img class="" style="width: 200px; height: 200px;" src="<?php echo base_url('/img/graph.png'); ?>" alt="Card image cap">
-			</div>-->
+			</div>
+			<div class="col-md-4" style="">
+				<div class="row" style="">
+					<div class="col card">
+						<?php $link=base_url();
+
+						if($primerban[0]->imagen=='')
+						{
+							echo "{$primerban[0]->codigo}";
+						}else{
+							echo "<img class='car-img-top' style='padding: 5px;'' src='{$link}mthumb.php?src={$link}{$primerban[0]->imagen}&w=350&h=400&q=100' alt='Card image cap'>";
+						}
+
+						?>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="row">
-			
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

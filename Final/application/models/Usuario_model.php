@@ -13,6 +13,7 @@ class Usuario_model extends CI_Model {
 
 	function registrarUsuario($user)
 	{
+		unset($user['g-recaptcha-response']);
 		$this->db->insert('usuario', $user);
 	}
 

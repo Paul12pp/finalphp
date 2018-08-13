@@ -72,27 +72,42 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="card col-md-12">
-				<h4>Inicio de sesion</h4>
-				<div class="col-md-4">
-					<form method="post" action="<?php echo base_url('autorizacion/login'); ?>">
-						<div class="form-group">
-							<label>Nombre de usuario</label>
-							<input type="text" class="form-control" name="username" required>
-						</div>
-						<div class="form-group">
-							<label>Contrasena</label>
-							<input type="password" class="form-control" name="password" required>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-success">Iniciar sesion</button>
-						</div>
-					</form>
+			<div class="col-md-8">
+				<div class="col card">
+					<h4>Inicio de sesion</h4>
+					<div class="col-md-4">
+						<form method="post" action="<?php echo base_url('autorizacion/login'); ?>">
+							<div class="form-group">
+								<label>Nombre de usuario</label>
+								<input type="text" class="form-control" name="username" required>
+							</div>
+							<div class="form-group">
+								<label>Contrasena</label>
+								<input type="password" class="form-control" name="password" required>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-success">Iniciar sesion</button>
+							</div>
+						</form>
+					</div>
 				</div>
-			</div><!--
-			<div class="col-md-4" style="background-color: red; width: 200px; height: 200px;">
-				<img class="" style="width: 200px; height: 200px;" src="<?php echo base_url('/img/graph.png'); ?>" alt="Card image cap">
-			</div>-->
+			</div>
+			<div class="col-md-4" style="">
+				<div class="row" style="">
+					<div class="col card">
+						<?php $link=base_url();
+
+						if($primerban[0]->imagen=='')
+						{
+							echo "{$primerban[0]->codigo}";
+						}else{
+							echo "<img class='car-img-top' style='padding: 5px;'' src='{$link}mthumb.php?src={$link}{$primerban[0]->imagen}&w=350&h=400&q=100' alt='Card image cap'>";
+						}
+
+						?>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			

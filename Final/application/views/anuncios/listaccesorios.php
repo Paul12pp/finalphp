@@ -72,6 +72,13 @@
 		          ?>
 		        </div>
 		      </li>
+		      <?php 
+            $register = base_url('autorizacion/registro');
+            if($sesion =='popo'){
+            	echo "<li><a href='{$register}'>Registro</a></li>
+";
+            }
+            ?>
             <li>
               <?php
             $salir = base_url('autorizacion/salir');

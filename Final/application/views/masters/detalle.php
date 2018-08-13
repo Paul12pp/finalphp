@@ -72,6 +72,13 @@
 		          ?>
 		        </div>
 		      </li>
+		       <?php 
+            $register = base_url('autorizacion/registro');
+            if($sesion =='popo'){
+            	echo "<li><a href='{$register}'>Registro</a></li>
+";
+            }
+            ?>
             <li>
               <?php
             $salir = base_url('autorizacion/salir');
@@ -119,6 +126,11 @@
 						<p><?=$noticia->contenido?></p>				
 					</div>
 				</div>
+				<div style="padding-top: 5px;">
+					<div class="card">
+						<div class="fb-comments" data-href="https://bmxrd.000webhostapp.com/" data-width="auto" data-numposts="5"></div>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-4">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -163,6 +175,14 @@
 		<div class="row">
 		</div>
 	</div>
+	<div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="<?php echo base_url('/bootstrap/js/bootstrap.min.js'); ?>"></script>
     <script type="text/javascript">

@@ -8,6 +8,7 @@ class Autorizacion extends CI_Controller {
 		define('NOLOGIN',true);
 		parent::__construct();
 		$this->load->model('usuario_model');
+		$this->load->model('banner_model');
 	}
 
 	public function index()
@@ -26,20 +27,39 @@ class Autorizacion extends CI_Controller {
 			$_POST['apellido']='';
 			$_POST['acerca']='';
 			$_POST['fechareg']= $d2;
-			$this->usuario_model->registrarUsuario($_POST);
-			echo 'guardado';
-		}
 
+			$secret = '6Lfu1GkUAAAAADzYRUqqwvg__9tJCiMbjNW4wP-o';
+	        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+	        $responseData = json_decode($verifyResponse);
+	        if($responseData->success){
+	        	$this->usuario_model->registrarUsuario($_POST);
+	        }
+	        else {
+				
+				$data = array();
+				$data['error'] = "Llene el captcha.";
+				$data['primerban'] = $this->banner_model->cargarBannerp();
+				$data['segundoban'] = $this->banner_model->cargarBanners();
+				$this->load->view('autorizaciones/registro', $data);
+			}
+		}
 	}
 
 	function registro()
 	{
-		$this->load->view('autorizaciones/registro');
+		$data = array();
+		$data['error'] = ""; 
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
+		$this->load->view('autorizaciones/registro', $data);
 	}
 
 	function sesionstar()
 	{
-		$this->load->view('autorizaciones/login');
+		$data = array();
+		$data['primerban'] = $this->banner_model->cargarBannerp();
+		$data['segundoban'] = $this->banner_model->cargarBanners();
+		$this->load->view('autorizaciones/login',$data);
 	}
 
 	function login()

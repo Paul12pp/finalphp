@@ -77,13 +77,21 @@
 		          ?>
 		        </div>
 		      </li>
+		    <?php 
+            $register = base_url('autorizacion/registro');
+            if($sesion =='popo'){
+            	echo "<li><a href='{$register}'>Registro</a></li>
+";
+            }
+            ?>
             <li>
             <?php
             $salir = base_url('autorizacion/salir');
             	if($sesion !='popo'){
             		echo "<a class='btn btn-default btn-outline btn-circle collapsed'  data-toggle='collapse' href='{$salir}' aria-expanded='false' aria-controls='nav-collapse2'>Salir</a>";
             	}else{
-            		echo "<a class='btn btn-default btn-outline btn-circle collapsed'  data-toggle='collapse' href='#nav-collapse2' aria-expanded='false' aria-controls='nav-collapse2'>Sign in</a>";
+            		echo "
+            		<a class='btn btn-default btn-outline btn-circle collapsed'  data-toggle='collapse' href='#nav-collapse2' aria-expanded='false' aria-controls='nav-collapse2'>Sign in</a>";
             	}
             ?>
             </li>
