@@ -2,11 +2,10 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Exito</title>
+	<title>Nosotros</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/bootstrap/css/bootstrap.min.css');?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/bootstrap/css/mystyle.css'); ?>">
-
 </head>
 <body>
 	<div class="container-fluid">
@@ -35,18 +34,11 @@
 		          <a class="dropdown-item" href="<?php echo base_url('anuncio/listservicios'); ?>">Servicios</a>
 		        </div>
 		      </li>
-            <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Nosotros
-		        </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Quienes somos</a>
-		          <a class="dropdown-item" href="#">Contacto</a>
-		        </div>
-		      </li>
+		      <li><a href="<?php echo base_url('master/nosotros'); ?>">Nosotros</a></li>
+            
             <li><a href="<?php echo base_url('master/noticias'); ?>">Noticias</a></li>
             <li><a href="<?php echo base_url('master/eventos');?>">Eventos</a></li>
-             <li <?php echo $admin;?> class="nav-item dropdown">
+            <li <?php echo $admin;?> class="nav-item dropdown">
 		          <?php 
 		          $super = base_url('master');
 		          $editar = base_url('usuario');
@@ -71,14 +63,21 @@
 		        </div>
 		      </li>
             <li>
-              <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="<?php echo base_url('autorizacion/salir'); ?>" aria-expanded="false" aria-controls="nav-collapse2">Salir</a>
+            <?php
+            $salir = base_url('autorizacion/salir');
+            	if($sesion !='popo'){
+            		echo "<a class='btn btn-default btn-outline btn-circle collapsed'  data-toggle='collapse' href='{$salir}' aria-expanded='false' aria-controls='nav-collapse2'>Salir</a>";
+            	}else{
+            		echo "<a class='btn btn-default btn-outline btn-circle collapsed'  data-toggle='collapse' href='#nav-collapse2' aria-expanded='false' aria-controls='nav-collapse2'>Sign in</a>";
+            	}
+            ?>
             </li>
           </ul>
           <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
             <form method="post" action="<?php echo base_url('autorizacion/login'); ?>" class="navbar-form navbar-right form-inline" role="form">
               <div class="form-group">
                 <label class="sr-only" for="Email">Usuario</label>
-                <input type="text" name="username" class="form-control" id="Email" placeholder="Username" autofocus required />
+                <input type="text" name="username" class="form-control" id="Email" placeholder="Email" autofocus required />
               </div>
               <div class="form-group">
                 <label class="sr-only" for="Password">Password</label>
@@ -94,18 +93,23 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<div class="card" style="height: 200px;">
-					<div class="col-md-4" style="">
-						<h4>Anuncio eliminado satisfactoriamente.</h4>
-						<h6>Por favor vuelva al panel.</h6>
-						<a href="<?php echo base_url('anuncio/panel'); ?>" class="btn btn-primary">Volver</a>
+				<div class="card" style="height: 400px;">
+					<div class="col-md-12" style="">
+						<h4>Quienes somos?</h4>
+						<p>BMX RD fue fundada el 25 de agosto de 1988 con la funcionalidad de unir a todos los riders de Republica Dominicana.</p>
+						<p>
+						Con su sede principal en la ciudad de Santiago, mediante esta moderna plataforma tecnológica que permite ofrecer a los riders soluciones a problemas tecnicos con eficiencia y calidad en los principales puntos del país, garantizando de esta manera la satisfacción de sus necesidades.</p>
+						<h4>Valores</h4>
+						<p>Liderazgo</p>
+						<p>Productividad</p>
+						<p>Compromiso</p>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4" style="">
 				<div class="row">
-					<div class="col card">
-						<img class="car-img-top" style="width: 350px; height: 200px;" src="<?php echo base_url('/img/graph.png'); ?>" alt="Card image cap">
+					<div class="col ">
+					
 					</div>
 				</div>
 				<div class="row" style="padding: 5px;">

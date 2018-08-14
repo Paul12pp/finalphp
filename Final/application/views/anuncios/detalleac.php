@@ -37,15 +37,8 @@
 		          <a class="dropdown-item" href="<?php echo base_url('anuncio/listservicios'); ?>">Servicios</a>
 		        </div>
 		      </li>
-            <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Nosotros
-		        </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Quienes somos</a>
-		          <a class="dropdown-item" href="#">Contacto</a>
-		        </div>
-		      </li>
+             <li><a href="<?php echo base_url('master/nosotros'); ?>">Nosotros</a></li>
+            
             <li><a href="<?php echo base_url('master/noticias'); ?>">Noticias</a></li>
             <li><a href="<?php echo base_url('master/eventos');?>">Eventos</a></li>
              <li <?php echo $admin;?> class="nav-item dropdown">
@@ -142,7 +135,7 @@
 				</div>
 				<div style="padding-top: 5px;">
 					<div class="card">
-						<div class="fb-comments" data-href="https://bmxrd.000webhostapp.com/" data-width="auto" data-numposts="5"></div>
+						 <div class="fb-comments" data-href="https://bmxrd.000webhostapp.com/" data-width="auto" data-numposts="5"></div>
 					</div>
 				</div>
 			</div>
@@ -155,7 +148,7 @@
 					</ul>
 					<div class="tab-content" id="myTabContent">
 					  <div class="tab-pane active" id="home">
-					  	<div class="card">
+					  	<div class="card col-md-12">
 							<div class="card-body">
 								<div class="row">
 									<div class="col-md-auto">
@@ -163,14 +156,12 @@
 									</div>
 									<div class="col">
 										<h5 class="card-title"><b>Agregago por:</b><?php echo $usuario->username;?></h5>
-										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+										
 									</div>
 								</DIV>
 								<div class="row">
 									<div class="col">
-										<h5 class="card-title"><b>Otros articulos de:</b></h5>
-										<p>popo</p>
-										<p>lkdld</p>
+									
 									</div>
 								</div>
 							</div>											  						  			
@@ -197,7 +188,7 @@
 		</div>
 		<div class="row">
 		</div>
-	</div>
+	</div>	
 	<div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];

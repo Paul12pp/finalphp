@@ -37,15 +37,8 @@
 		          <a class="dropdown-item" href="<?php echo base_url('anuncio/listservicios'); ?>">Servicios</a>
 		        </div>
 		      </li>
-            <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Nosotros
-		        </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Quienes somos</a>
-		          <a class="dropdown-item" href="#">Contacto</a>
-		        </div>
-		      </li>
+             <li><a href="<?php echo base_url('master/nosotros'); ?>">Nosotros</a></li>
+            
             <li><a href="<?php echo base_url('master/noticias'); ?>">Noticias</a></li>
             <li><a href="<?php echo base_url('master/eventos');?>">Eventos</a></li>
              <li <?php echo $admin;?> class="nav-item dropdown">
@@ -128,13 +121,14 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div id="map"></div>
+								<p><b>Info:</b> <?=$evento->enlace?></p>
 							</div>
 						</div>					
 					</div>
 				</div>
 				<div style="padding-top: 5px;">
 					<div class="card">
-						<div class="fb-comments" data-href="https://bmxrd.000webhostapp.com/" data-width="auto" data-numposts="5"></div>
+						 <div class="fb-comments" data-href="https://bmxrd.000webhostapp.com/" data-width="auto" data-numposts="5"></div>
 					</div>
 				</div>
 			</div>

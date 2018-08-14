@@ -34,19 +34,43 @@
 		          <a class="dropdown-item" href="<?php echo base_url('anuncio/listservicios'); ?>">Servicios</a>
 		        </div>
 		      </li>
-            <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Nosotros
-		        </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Quienes somos</a>
-		          <a class="dropdown-item" href="#">Contacto</a>
-		        </div>
-		      </li>
+             <li><a href="<?php echo base_url('master/nosotros'); ?>">Nosotros</a></li>
+            
             <li><a href="<?php echo base_url('master/noticias'); ?>">Noticias</a></li>
             <li><a href="<?php echo base_url('master/eventos');?>">Eventos</a></li>
+            <li <?php echo $admin;?> class="nav-item dropdown">
+		          <?php 
+		          $super = base_url('master');
+		          $editar = base_url('usuario');
+		          $ads = base_url('anuncio/panel');
+		          if($sesion !='popo'){
+				          	echo "<a href='#' class='btn tito nav-link dropdown-toggle' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><span class='setting' data-toggle='tooltip' data-placement='top' title='Panel de control'></span></a>
+				        <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+				          <a class='dropdown-item' href='{$ads}'>Mis anuncios</a>
+				          <a class='dropdown-item' href='{$editar}'>Editar perfil</a>";
+
+		          	if($admin !='hidden' && $admin !='0')
+		          	{
+		          		echo "<a class='dropdown-item' href='{$super}'>Administrador</a>";
+		          	}
+		          	else{
+		          		echo "";
+		          	}
+		          }else{
+		          	echo "<div class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+		          }
+		          ?>
+		        </div>
+		      </li>
             <li>
-              <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="<?php echo base_url('autorizacion/salir'); ?>" aria-expanded="false" aria-controls="nav-collapse2">Salir</a>
+            <?php
+            $salir = base_url('autorizacion/salir');
+            	if($sesion !='popo'){
+            		echo "<a class='btn btn-default btn-outline btn-circle collapsed'  data-toggle='collapse' href='{$salir}' aria-expanded='false' aria-controls='nav-collapse2'>Salir</a>";
+            	}else{
+            		echo "<a class='btn btn-default btn-outline btn-circle collapsed'  data-toggle='collapse' href='#nav-collapse2' aria-expanded='false' aria-controls='nav-collapse2'>Sign in</a>";
+            	}
+            ?>
             </li>
           </ul>
           <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
@@ -79,8 +103,8 @@
 			</div>
 			<div class="col-md-4" style="">
 				<div class="row">
-					<div class="col card">
-						<img class="car-img-top" style="width: 350px; height: 200px;" src="<?php echo base_url('/img/graph.png'); ?>" alt="Card image cap">
+					<div class="col ">
+					
 					</div>
 				</div>
 				<div class="row" style="padding: 5px;">
